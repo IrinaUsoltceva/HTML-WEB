@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Тест для самопроверки</title>
+<style type="text/css">
+ /*.quest {display: none;}*/
+ /*#result {display: none;}*/
+ .quest h3 {}
+ .ans {margin-bottom:10px;}
+</style>
+<script src='https://code.jquery.com/jquery-1.11.2.js'></script>
+<script>
+$(document).ready(function(){
+
+
+});
+</script>
+</head>
+
+<body>
+<form name="f">
+<div id="intro">
+ <h3>Тест</h3>
+ Соберитесь с силами и нажмите кнопку для прохождения теста: <input type="button" value="начать тест" id="start" />
+</div>
+<div class="quest">
+ <h3>Кукуруза была введена в культуру 7—12 тыс. лет назад на территории современной</h3>
+ <div class="ans"><input type="radio" />России</div>
+ <div class="ans"><input type="radio" />Мексики</div>
+ <div class="ans"><input type="radio" />Танзании</div>
+</div>
+<div class="quest">
+ <h3>Кукуруза относится к семейству</h3>
+ <div class="ans"><input type="radio" />злаков</div>
+ <div class="ans"><input type="radio" />крестоцветных</div>
+ <div class="ans"><input type="radio" />сосновых</div>  
+</div>
+<div class="quest">
+ <h3>Отметьте цветущую кукурузу:</h3>
+ <div class="ans"><input type="radio" /><img src="img/1.jpg"></div>
+ <div class="ans"><input type="radio" /><img src="img/2.jpg"></div>
+ <div class="ans"><input type="radio" /><img src="img/3.jpg"></div> 
+</div>
+<div id="result">
+ А здесь должен быть результат прохождения теста
+</div>
+</form>
+</body>
+</html>
