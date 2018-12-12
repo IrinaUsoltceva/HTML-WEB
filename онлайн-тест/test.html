@@ -15,8 +15,8 @@
         $(document).ready(function(){
 
             $('#start').click ( function() {
-                $('#intro').hide();
-                $('.quest').first().show();
+                $('#intro').fadeOut('slow');
+                $('.quest').first().show(900);
             });
 
             //---------------------
@@ -27,7 +27,7 @@
 
                 //навигация...
 
-                //объединили радиокнопки в группы:
+                //объединили рад иокнопки в группы:
                 var radioGroup = $(this).find('input[type="radio"]');
                 radioGroup.attr('name','ans'+i);
 
