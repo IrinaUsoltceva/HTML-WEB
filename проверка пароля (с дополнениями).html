@@ -1,0 +1,106 @@
+
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Проверка пароля...</title>
+    <style>
+        .red {color: red;}
+    </style>
+    <script src='https://code.jquery.com/jquery-1.11.2.js'></script>
+    <script>
+        $(document).ready ( function() {
+
+            //изящный код
+            //изменить регулярку и выводить по группам
+
+            $('#pwd').focus();                              //фокус на поле с паролем
+            $('input[required="required"]').after(' *');    //пока не введешь пароль - будет требовать
+
+            //---------------------
+            $('#pwd').keyup ( function() {                  //если начинаем печатать в пароле (но не уверена)
+                var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/;  //регулярка для проверки (не ясная для меня что означает)
+                if ( re.test($(this).val()) ) {                 //если то, что вбиваем - подходит
+                    $('#pwdRegExp').fadeOut('slow');            //предупреждение что нужно вбить - пропадает
+                    $('#pwd1').prop('disabled',false)           //становится возможным повторить пароль
+                }
+                else {
+                    $('#pwdRegExp').fadeIn('slow');             //иначе всплывает предупреждение, что чего-то не хватает
+                    $('#pwd1').prop('disabled',true)            //и становится невозможным повторить пароль
+                }
+
+                /*if ( /латинские маленькие/.test($(this).val()) ) {
+                    $('#pwdRegExp').fadeOut('slow');
+                    $('#pwdRegExp').text ('пароль должен содержать латинские буквы в верхнем регистре и хотя бы одну цифру')
+                    $('#pwdRegExp').fadeIn('slow');
+                    }
+
+                */
+
+
+                //кол-во символов:
+                var lengthOfPswd = $(this).val().length;
+                if ( lengthOfPswd  == 0 )
+                    $('#pwdMsg').text('');
+                else if ( lengthOfPswd  < 4 )
+                    $('#pwdMsg').text('слабый').css('color','red');
+                else if ( lengthOfPswd  < 8 )
+                    $('#pwdMsg').text('средний').css('color','orange');
+                else
+                    $('#pwdMsg').text('сильный').css('color','springgreen');
+
+            });
+
+            //----------------------------
+
+            $('#pwd1').keyup ( function() {         //если начинаем печатать во втором поле с паролем
+                if ( $(this).val()=='' ) {              //если ничего не напечатано
+                    $('#pwdMsg1').text('');             //ничего не говорит о правильности повтора
+                    return
+                };
+
+                if ( ( $('#pwd').val().indexOf($(this).val()) == 0 ) &&     //если то, что мы печатаем, находится в начале старого пароля
+                    ( $('#pwd').val() != $(this).val() ) ) {                //и не равно целиком паролю
+                    $('#pwdMsg1').text('пока повтор правильный...');        //говорит, что пока все норм
+                    $('#pwdMsg1').removeClass('red');                       //и не подчеркивает красным
+                    return
+                };
+
+                if (  $('#pwd').val().indexOf($(this).val()) != 0  ) {  //иначе, если оно находится в другом месте или вообще нет
+                    $('#pwdMsg1').text('повтор неправильный...');       //говорит, что неправильно
+                    $('#pwdMsg1').addClass('red');                      //подчеркивает красным
+                    return
+                };
+
+                if (  $('#pwd').val() == $(this).val() ) {              //как только пароли полностью совпадают
+                    $('#pwdMsg1').text('совпали!!!');                   //тут же говорим, что СОВПАЛИ
+                    $('#pwdMsg1').removeClass('red');                   //красным не подчерниквает
+                    //$(this).blur();
+                    $('#next').focus();  //если есть логически следующий элемент формы      //переносим фокус на следующий элемент
+                    return
+                };
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+<form name="f">
+    <p>
+        придумайте пароль<br />
+        <input type="password" name="pwd" id="pwd" required="required" /> <span id="pwdMsg"></span>
+        <br /><span id="pwdRegExp">пароль должен содержать латинские буквы в нижнем и верхнем регистре и хотя бы одну цифру</span>
+    </p>
+    <p>
+        повторите пароль<br />
+        <input type="password" name="pwd1" id="pwd1" required="required" disabled="disabled" /> <span id="pwdMsg1"></span>
+    </p>
+    <p>
+        <input type="text" name="next" id="next" /> следующее поле
+    </p>
+    <p><input type="submit" value="go!" />
+</form>
+</body>
+</html>
