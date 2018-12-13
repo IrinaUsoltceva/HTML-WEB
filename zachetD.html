@@ -13,8 +13,6 @@
     <script>
         $(document).ready ( function() {
 
-
-
             //----- Sort
             var books = [];
             $('#list li').each(function () {
@@ -34,18 +32,67 @@
             });
 
             /*
-           Добавьте навигацию (буквы).
            Напишите обработчик события click на элементах навигации.
            Не забудьте добавить в навигацию возможность со смыслом "показать всё".
             */
 
             //----- Letters
 
+            /*$('#letters span').click (function () {
+                $('#list li').each(function () {
+                    $(this).fadeIn('slow');
+                });
+                var letter = $(this).text();
+                console.log(letter);
+                $('#list li').each(function () {
+                    if ($(this).text()[0] !== letter) {
+                        console.log($(this).text()[0]);
+                        $(this).fadeOut('slow');
+                    }
+                });
+            });
+            */
 
+            $('#letters span').click (function (){
+                $('#list li').each(function () {
+                    $(this).fadeOut('slow');
+                });
+
+
+
+                $('#list li').each(function () {
+
+
+                    $('#list li').each(function () {
+                        if ($(this).text()[0] === letter) {
+                            $(this).fadeIn('slow');
+                        }
+
+
+            });
+
+            /*
+            $('#letters span').click (function () {
+
+                $('#list li').each(function () {
+                    $(this).fadeOut('slow');
+                });
+
+                $('#list li').each(function () {
+                    var letter = $(this).text();
+
+                    $('#list li').each(function () {
+                        if ($(this).text()[0] === letter) {
+                            $(this).fadeIn('slow');
+                        }
+                    });
+                });
+            });
+             */
 
             //----- Click Letter
 
-
+            //мб потом еще просто поиск добавить??
 
         });	// $(document).ready
     </script>
@@ -53,6 +100,16 @@
 <body>
 
 <h1>Библиография</h1>
+
+<div id="letters">
+    <span>А</span>
+    <span>Б</span>
+    <span>В</span>
+    <span>Г</span>
+    <span>Д</span>
+    <span>Е</span>
+    <span>Ё</span>
+</div>
 
 <ul id="list" >
     <li>Алешковский М. Х. Каменные стражи. Путеводитель по крепостям. Л., 1971.</li>
