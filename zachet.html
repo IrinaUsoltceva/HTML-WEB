@@ -22,9 +22,9 @@
         }
 
         #extra {
-            width: 33%;
-            padding-left: 40px;
-            /*position: fixed;*/
+            position: fixed;
+            width: 300px;
+            margin-right: 20px;
         }
 
         /* --------------------------------- */
@@ -90,23 +90,34 @@
         }
 
         .container {
-            height: 800px;
+            width: 33%;
+            padding-left: 40px;
+            float: left;
+            box-sizing: border-box;
+            margin-top: 0;
         }
 
     </style>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-
-        /*Фиксируйте "шапку" и навигацию.
-        Фиксируйте правый (небольшой по содержимому) блок.
-        Реализуйте в должный момент прокрутку правого блока. Сначала сформулируйте, что это за момент.
-*/
         $(document).ready ( function() {
 
+            $(window).scroll(function(){
+            var block1 = $('#extra');
 
-            	//	$(window).scroll
+            if ($(this).scrollTop() >= block1.height()) {
+                block1.css('position', 'unset');
+                block1.css('margin-top', '972px');
+            }
+            else {
+                block1.css('position', 'fixed');
+                block1.css('margin-top', '');
+            }
+            })
 
-        });	// $(document).ready
+
+
+        });
     </script>
 </head>
 
